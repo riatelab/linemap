@@ -5,5 +5,5 @@
 \alias{linemap-package}
 \title{Line Map Package}
 \description{
-Create line maps.
+Create maps made of lines.
 }

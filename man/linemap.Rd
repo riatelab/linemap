@@ -29,11 +29,16 @@ gridded data}
 Plot a line map.
 }
 \examples{
+library(linemap)
 data("Occitanie")
-par(mar=c(0,0,0,0), bg = "ivory2")
-plot(sf::st_geometry(regOcc), col="ivory1", border = NA, lwd = 1, lty=3)
-mtext(text = "Occitanie, le nouveau Mordor", side = 3, line = -2,
-      adj = 0.01, cex = 1.5, col = "ivory4", font = 3)
-linemap(x = popOcc, var = "pop", k = 2.5, threshold = 50,
-        col = "ivory1", border = "ivory4", lwd = 0.6, add = TRUE)
+opar <- par(mar=c(0,0,0,0), bg = "ivory2")
+if(require(sf)){
+  plot(st_geometry(regOcc), col="ivory1", border = NA)
+  linemap(x = popOcc, var = "pop", k = 2.5, threshold = 50,
+          col = "ivory1", border = "ivory4", lwd = 0.6, add = TRUE)
+}else{
+  linemap(x = popOcc, var = "pop", k = 2.5, threshold = 50,
+          col = "ivory1", border = "ivory4", lwd = 0.6, add = FALSE)
+}
+par(opar)
 }

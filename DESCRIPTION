@@ -5,8 +5,7 @@ Version: 0.1.0
 Authors@R: c(
       person("Timothée", "Giraud", 
         email = "timothee.giraud@cnrs.fr", role = c("cre","aut")))
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: Create maps made of lines.
 Suggests: sf
 Imports: graphics
 License: GPL-3

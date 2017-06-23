@@ -2,7 +2,7 @@
 #' @rdname linemap-package
 #' @name linemap-package
 #' @description
-#' Create line maps.
+#' Create maps made of lines.
 #' @docType package
 NULL
 

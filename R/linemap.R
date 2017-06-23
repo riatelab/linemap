@@ -12,15 +12,21 @@
 #' @param add if TRUE add the lines to the current plot
 #' @export
 #' @examples
+#' library(linemap)
 #' data("Occitanie")
-#' par(mar=c(0,0,0,0), bg = "ivory2")
-#' plot(sf::st_geometry(regOcc), col="ivory1", border = NA, lwd = 1, lty=3)
-#' mtext(text = "Occitanie, le nouveau Mordor", side = 3, line = -2,
-#'       adj = 0.01, cex = 1.5, col = "ivory4", font = 3)
-#' linemap(x = popOcc, var = "pop", k = 2.5, threshold = 50,
-#'         col = "ivory1", border = "ivory4", lwd = 0.6, add = TRUE)
+#' opar <- par(mar=c(0,0,0,0), bg = "ivory2")
+#' if(require(sf)){
+#'   plot(st_geometry(regOcc), col="ivory1", border = NA)
+#'   linemap(x = popOcc, var = "pop", k = 2.5, threshold = 50,
+#'           col = "ivory1", border = "ivory4", lwd = 0.6, add = TRUE)
+#' }else{
+#'   linemap(x = popOcc, var = "pop", k = 2.5, threshold = 50,
+#'           col = "ivory1", border = "ivory4", lwd = 0.6, add = FALSE)
+#' }
+#' par(opar)
 linemap <- function(x, var, k = 2, threshold = 1, col = "white",
                     border = "black", lwd = 0.5, add = FALSE){
+  x[is.na(x[var]),var] <- 0
   lat <- unique(x[,2])
   lon <- unique(x[,1])
   if(!add){
@@ -30,7 +36,7 @@ linemap <- function(x, var, k = 2, threshold = 1, col = "white",
   }
   for (i in length(lat):1){
     ly <- x[x[,2]==lat[i],]
-    ly[ly[var]<threshold, var] <- 0
+    ly[ly[var] < threshold, var] <- 0
     yVals <- ly[,2] + ly[,var] * k
     xVals <- ly[,1]
     yVals[is.na(yVals)] <- lat[i]
@@ -38,7 +44,7 @@ linemap <- function(x, var, k = 2, threshold = 1, col = "white",
     yVals[length(yVals)] <- yVals[1]
     graphics::polygon(xVals, yVals, border = NA, col = col)
     for(j in 1:(length(yVals) - 1)){
-      if ((ly[j,var] > threshold) | (ly[j+1,var] > threshold)){
+      if ((ly[j,var] > 0) | (ly[j+1,var] > 0)){
         graphics::segments(xVals[j], yVals[j], xVals[j+1], yVals[j+1],
                            col=border, lwd=lwd)
       }
@@ -46,31 +52,3 @@ linemap <- function(x, var, k = 2, threshold = 1, col = "white",
   }
 }
 
-
-
-
-# library(foreign)
-# France <- readRDS("/home/tg/Documents/prj/linemap/France.rds")
-# Occitanie <- readRDS("/home/tg/Documents/prj/linemap/Occitanie.rds")
-# Region <- readRDS("/home/tg/Documents/prj/linemap/OccitanieReg.rds")
-# df <- read.dbf("/home/tg/Téléchargements/ECP1KM_09_MET/R_rfl09_LAEA1000.dbf")
-# df <- df[-1,]
-# df <- df[df$x_laea>3425028 & df$x_laea <3917763 & df$y_laea>2159464 & df$y_laea <2482957,]
-# grid <- expand.grid(x=unique(df$x_laea), y = unique(df$y_laea))
-# grid <- merge(grid, df[,c("x_laea","y_laea", "ind")],
-#               by.x = c("x","y"),
-#               by.y = c("x_laea","y_laea"), all.x = TRUE)
-#
-# grid[is.na(grid$ind),"ind"] <- 0
-# library(sf)
-# grid = st_as_sf(grid, coords = c("x", "y"), crs = proj4string(Region), agr = "constant")
-# xx <- st_intersects(x = grid, y = st_as_sf(Region))
-# grid[unlist(lapply(xx, FUN = function(x) {if(length(x)>0){FALSE}else{TRUE}})), "ind"] <- 0
-# Region <- st_as_sf(Region)
-# x <- data.frame(st_coordinates(st_centroid(grid)), pop = grid$ind)
-# str(Region)
-# popOcc <- x
-# regOcc <- st_simplify(Region, dTolerance = 1000)
-# save(list=c("popOcc", "regOcc"), file = "data/Occitanie.RData" )
-
-# dev.off()

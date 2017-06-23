@@ -1,25 +1,15 @@
 # library(sf)
-# iris <- st_read(dsn = "/home/tg/Téléchargements/CONTOURS-IRIS_2-1__SHP_LAMB93_FXX_2016-11-10/CONTOURS-IRIS/1_DONNEES_LIVRAISON_2015/CONTOURS-IRIS_2-1_SHP_LAMB93_FE-2015/",layer = "CONTOURS-IRIS")
-# iris75 <- iris[substr(iris$INSEE_COM,1,2) %in% c(75),]
 # library(readxl)
+# iris <- st_read(dsn = "/home/tg/Téléchargements/CONTOURS-IRIS_2-1__SHP_LAMB93_FXX_2016-11-10/CONTOURS-IRIS/1_DONNEES_LIVRAISON_2015/CONTOURS-IRIS_2-1_SHP_LAMB93_FE-2015/",layer = "CONTOURS-IRIS")
 # xx <- read_excel(path = "/home/tg/Téléchargements/base-ic-activite-residents-2013.xls", sheet = "IRIS", skip = 5)
-# x <- xx[xx$DEP %in%  c(75),]
+# dep <- c(29,22,56,35)
+# iris75 <- iris[substr(iris$INSEE_COM,1,2) %in% dep,]
+# x <- xx[xx$DEP %in% dep,]
 # iris75 <- merge(iris75,x, by.x="CODE_IRIS",by.y = "IRIS", all.x=T)
-# library(cartography)
-#
-# plot(iris75$geometry)
-# propSymbolsLayer(x = iris75, var = "P13_SAL15P_CDI", inches = 0.1)
-#
-#
-# # isimp <- st_simplify(iris75,dTolerance = 25 )
-# #
-# #
-# #
-# # plot(st_geometry(isimp), col = NA, border = "grey")
 #
 #
 # x <- iris75
-# cellsize = 200*200
+# cellsize = 2000*2000
 # var  = names(x)[19:120]
 # getGridSquare <- function(x, cellsize){
 #   # cellsize transform
@@ -44,7 +34,7 @@
 #
 # # get a grid
 # grid <- getGridSquare(x, cellsize)
-# plot(grid$geometry, add=F)
+# plot(grid$geometry, add=T)
 #
 #
 #
@@ -52,10 +42,14 @@
 # # gover <- sf::st_intersects(grid, x)
 # # grid <- grid[unlist(lapply(gover, FUN = function(x) {if(length(x)>0){TRUE}else{FALSE}})), ]
 #
+#
+# t0 <- Sys.time()
 # # predicted warning, we don't care...
 # options(warn = -1)
 # parts <- sf::st_intersection(x = grid[,"id_cell"], y = x)
 # options(warn = 0)
+# t1 <- Sys.time()
+# t1-t0
 #
 #
 # parts$area_part <- sf::st_area(parts)
@@ -65,7 +59,6 @@
 # lvar <- vector(mode = "list", length = length(var))
 # names(lvar) <- var
 # for (i in 1:length(lvar)){
-#   print(names(lvar)[i])
 #   lvar[[i]] <- as.vector(parts[[names(lvar)[i]]] * parts$area_part / parts$area)
 # }
 # v <- aggregate(do.call(cbind,lvar), by = list(id = parts[['id_cell']]),
@@ -78,38 +71,42 @@
 # gr <- cbind(grid, st_coordinates(st_centroid(grid)))
 #
 #
-# gr[is.na(gr$P13_SAL15P_CDI),"P13_SAL15P_CDI"] <- 0
-#
-# lat <- unique(gr$Y)
-# lon <- unique(gr$X)
 #
 #
-# par(mar=c(0,0,0,0))
-# plot(iris75$geometry, col = "black", border = NA, bg="black")
+# gr <- as.data.frame(gr[,c("X","Y",var), drop=TRUE])
+# head(gr)
+# library(linemap)
+# plot(iris75$geometry, col = "ivory3", lwd = 0.2, border = NA)
+# linemap(x = gr, var = "C13_ACT1564", k = 3, threshold = 100,col = "ivory1", border = "ivory4", lwd = 0.6, add = F)
 #
-# threshold = 1
-# # plot(reg, lwd = 0.7, border = NA, col = "ivory3", add=T)
-# for (i in length(lat):1){
-#   ly <- gr[gr$Y==lat[i],]
-#   ly$P13_SAL15P_CDI[ly$P13_SAL15P_CDI<threshold] <- 0
-#   yVals <- ly$Y - ly$P13_ACT1564 /2
-#   xVals <- c(ly$X)
-#   yVals[is.na(yVals)] <- lat[i]
-#   yVals[1] <- lat[i]
-#   yVals[length(yVals)] <- yVals[1]
+
+
+
+
+
+# library(foreign)
+# France <- readRDS("/home/tg/Documents/prj/linemap/France.rds")
+# Occitanie <- readRDS("/home/tg/Documents/prj/linemap/Occitanie.rds")
+# Region <- readRDS("/home/tg/Documents/prj/linemap/OccitanieReg.rds")
+# df <- read.dbf("/home/tg/Téléchargements/ECP1KM_09_MET/R_rfl09_LAEA1000.dbf")
+# df <- df[-1,]
+# df <- df[df$x_laea>3425028 & df$x_laea <3917763 & df$y_laea>2159464 & df$y_laea <2482957,]
+# grid <- expand.grid(x=unique(df$x_laea), y = unique(df$y_laea))
+# grid <- merge(grid, df[,c("x_laea","y_laea", "ind")],
+#               by.x = c("x","y"),
+#               by.y = c("x_laea","y_laea"), all.x = TRUE)
 #
-#   polygon(xVals, yVals, border = NA, col = "#00000050")
-#  # lines(xVals, yVals, col="#8C8C8C", lwd=0.1)
-#
-#   j<- 1
-#   while (j <= (length(yVals) - 1)) {
-#
-#     if ((ly$P13_SAL15P_CDI[j]) > threshold | (ly$P13_SAL15P_CDI[j+1]) > threshold) {
-#       segments(xVals[j], yVals[j], xVals[j+1], yVals[j+1], col="green", lwd=.5)
-#     } else { } # Do nothing
-#
-#     j <- j + 1
-#
-#   }
-# }
+# grid[is.na(grid$ind),"ind"] <- 0
+# library(sf)
+# grid = st_as_sf(grid, coords = c("x", "y"), crs = proj4string(Region), agr = "constant")
+# xx <- st_intersects(x = grid, y = st_as_sf(Region))
+# grid[unlist(lapply(xx, FUN = function(x) {if(length(x)>0){FALSE}else{TRUE}})), "ind"] <- 0
+# Region <- st_as_sf(Region)
+# x <- data.frame(st_coordinates(st_centroid(grid)), pop = grid$ind)
+# str(Region)
+# popOcc <- x
+# regOcc <- st_simplify(Region, dTolerance = 1000)
+# save(list=c("popOcc", "regOcc"), file = "data/Occitanie.RData" )
+
 # dev.off()
+

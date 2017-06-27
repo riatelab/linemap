@@ -8,32 +8,33 @@ linemap(x, var, k = 2, threshold = 1, col = "white", border = "black",
   lwd = 0.5, add = FALSE)
 }
 \arguments{
-\item{x}{a data.frame, two first column must be longitude and latitude of
-gridded data}
+\item{x}{a data.frame, two first column must be longitudes and latitudes of
+gridded data.}
 
-\item{var}{the name of the variable to plot}
+\item{var}{name of the variable to plot.}
 
-\item{k}{expension factor}
+\item{k}{expension factor.}
 
-\item{threshold}{threshold of the data to plot}
+\item{threshold}{threshold of the data to plot.}
 
-\item{col}{color for the lines areas}
+\item{col}{color for the lines areas.}
 
-\item{border}{color for the lines borders}
+\item{border}{color for the lines borders.}
 
-\item{lwd}{thickness of the lines}
+\item{lwd}{thickness of the lines.}
 
-\item{add}{if TRUE add the lines to the current plot}
+\item{add}{if TRUE add the lines to the current plot.}
 }
 \description{
 Plot a line map.
 }
 \examples{
 library(linemap)
-data("Occitanie")
+data("popOcc")
 opar <- par(mar=c(0,0,0,0), bg = "ivory2")
 if(require(sf)){
-  plot(st_geometry(regOcc), col="ivory1", border = NA)
+  data("occitanie")
+  plot(st_geometry(occitanie), col="ivory1", border = NA)
   linemap(x = popOcc, var = "pop", k = 2.5, threshold = 50,
           col = "ivory1", border = "ivory4", lwd = 0.6, add = TRUE)
 }else{

@@ -1,14 +1,16 @@
-# `linemap`
-
+# `linemap`: Create Maps Made of Lines
 
 ## Example
 
+### `linemap` displays a map made of lines from a data frame of gridded data.
+
 ```r
 library(linemap)
-data("Occitanie")
+data("popOcc")
 opar <- par(mar=c(0,0,0,0), bg = "ivory2")
 if(require(sf)){
-  plot(st_geometry(regOcc), col="ivory1", border = NA)
+  data("occitanie")
+  plot(st_geometry(occitanie), col="ivory1", border = NA)
   linemap(x = popOcc, var = "pop", k = 2.5, threshold = 50,
           col = "ivory1", border = "ivory4", lwd = 0.6, add = TRUE)
 }else{
@@ -17,7 +19,48 @@ if(require(sf)){
 }
 par(opar)
 ```
+
 ![mordor](img/mordor.png)
+
+
+### `getgrid` transform a set of polygons (polygons or multipolygons sf objects) into a data frame suitable for `linemap`. 
+
+
+```r
+library(linemap)
+library(sf)
+data("bretagne")
+data("france")
+plot(st_geometry(bretagne))
+```
+![bretagne](img/bret.png)
+```r
+bret <- getgrid(x = bretagne, cellsize = 2000, var = "POPULATION")
+bret[6010:6014,]
+```
+|     |        X|       Y| POPULATION|
+|:----|--------:|-------:|----------:|
+|6010 | 340217.1| 6783195|   670.7509|
+|6011 | 342217.1| 6783195|  1050.2651|
+|6012 | 344217.1| 6783195|  1410.0992|
+|6013 | 346217.1| 6783195|  2304.2012|
+|6014 | 348217.1| 6783195|  2875.4047|
+
+
+
+```r
+opar <- par(mar = c(0,0,0,0))
+plot(st_geometry(france), col="lightblue3", border = NA, bg = "lightblue2",
+     xlim = c(min(bret$X), max(bret$X)), ylim= c(min(bret$Y), max(bret$Y)))
+linemap(x = bret, var = "POPULATION", k = 5, threshold = 1,
+        col = "lightblue3", border = "white", lwd = 0.8,
+        add = TRUE)
+par(opar)
+```
+
+![mordor2](img/mordor2.png)
+
+
 
 
 ## Installation

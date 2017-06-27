@@ -6,7 +6,7 @@
 \title{Popultation Data for Occitanie}
 \format{data.frame}
 \source{
-UMS RIATE
+Extract from INSEE's gridded population data, Population 2009(?) - \url{https://www.insee.fr/fr/statistiques/1405815}
 }
 \description{
 Gridded population of Occitanie

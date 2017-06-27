@@ -6,8 +6,8 @@ Authors@R: c(
       person("Timothée", "Giraud", 
         email = "timothee.giraud@cnrs.fr", role = c("cre","aut")))
 Description: Create maps made of lines.
-Suggests: sf
-Imports: graphics
+Depends: R (>= 2.10)
+Imports: graphics, sf, stats
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

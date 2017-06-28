@@ -24,7 +24,7 @@ if(require(sf)){
 par(opar)
 ```
 
-![mordor](img/mordor.png)
+![mordor](https://raw.githubusercontent.com/rCarto/linemap/master/img/mordor.png)
 
 
 ### `getgrid` 
@@ -39,7 +39,7 @@ data("bretagne")
 data("france")
 plot(st_geometry(bretagne))
 ```
-![bretagne](img/bret.png)
+![bretagne](https://raw.githubusercontent.com/rCarto/linemap/master/img/bret.png)
 ```r
 bret <- getgrid(x = bretagne, cellsize = 2000, var = "POPULATION")
 bret[6010:6014,]
@@ -64,7 +64,7 @@ linemap(x = bret, var = "POPULATION", k = 5, threshold = 1,
 par(opar)
 ```
 
-![mordor2](img/mordor2.png)
+![mordor2](https://raw.githubusercontent.com/rCarto/linemap/master/img/mordor2.png)
 
 
 

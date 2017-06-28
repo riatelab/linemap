@@ -2,7 +2,11 @@
 
 ## Example
 
-### `linemap` displays a map made of lines from a data frame of gridded data.
+The package contains two functions: `linemap` and `getgrid`
+
+### `linemap` 
+
+`linemap` displays a map made of lines from a data frame of gridded data.
 
 ```r
 library(linemap)
@@ -23,7 +27,9 @@ par(opar)
 ![mordor](img/mordor.png)
 
 
-### `getgrid` transform a set of polygons (polygons or multipolygons sf objects) into a data frame suitable for `linemap`. 
+### `getgrid` 
+
+`getgrid` transforms a set of polygons (polygons or multipolygons, sf objects) into a suitable data frame for `linemap`. 
 
 
 ```r

@@ -20,15 +20,18 @@ A data frame is returned.
 Transform a polygon layer to a regular grid data.frame.
 }
 \examples{
+\dontrun{
 library(linemap)
+library(sf)
 data("bretagne")
 data("france")
-bret <- getgrid(x = bretagne, cellsize = 2000, var = "POPULATION")
+bret <- getgrid(x = bretagne, cellsize = 1750, var = "POPULATION")
 opar <- par(mar = c(0,0,0,0))
-plot(sf::st_geometry(france), col="lightblue3", border = NA, bg = "lightblue2",
+plot(st_geometry(france), col="lightblue3", border = NA, bg = "lightblue2",
      xlim = c(min(bret$X), max(bret$X)), ylim= c(min(bret$Y), max(bret$Y)))
 linemap(x = bret, var = "POPULATION", k = 5, threshold = 1,
         col = "lightblue3", border = "white", lwd = 0.8,
         add = TRUE)
 par(opar)
+}
 }

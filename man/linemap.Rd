@@ -29,17 +29,15 @@ gridded data.}
 Plot a line map.
 }
 \examples{
+\dontrun{
 library(linemap)
+library(sf)
 data("popOcc")
+data("occitanie")
 opar <- par(mar=c(0,0,0,0), bg = "ivory2")
-if(require(sf)){
-  data("occitanie")
-  plot(st_geometry(occitanie), col="ivory1", border = NA)
-  linemap(x = popOcc, var = "pop", k = 2.5, threshold = 50,
-          col = "ivory1", border = "ivory4", lwd = 0.6, add = TRUE)
-}else{
-  linemap(x = popOcc, var = "pop", k = 2.5, threshold = 50,
-          col = "ivory1", border = "ivory4", lwd = 0.6, add = FALSE)
-}
+plot(st_geometry(occitanie), col="ivory1", border = NA)
+linemap(x = popOcc, var = "pop", k = 2.5, threshold = 50,
+        col = "ivory1", border = "ivory4", lwd = 0.6, add = TRUE)
 par(opar)
+}
 }

@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/rCarto/linemap.svg?branch=master)](https://travis-ci.org/rCarto/linemap)
+
 # `linemap`: Create Maps Made of Lines
 
 ## Example

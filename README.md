@@ -25,7 +25,7 @@ par(opar)
 
 ### `getgrid` 
 
-`getgrid` transforms a set of polygons (polygons or multipolygons, sf objects) into a suitable data frame for `linemap`. 
+`getgrid` transforms a set of polygons (POLYGONS or MULTIPOLYGONS, `sf` objects) into a suitable data frame for `linemap`. 
 
 
 ```r

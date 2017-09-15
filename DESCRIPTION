@@ -5,7 +5,10 @@ Version: 0.1.0
 Authors@R: c(
       person("Timothée", "Giraud", 
         email = "timothee.giraud@cnrs.fr", role = c("cre","aut")))
-Description: Create maps made of lines.
+Description: Create maps made of lines. The package contains two functions: 
+  linemap and getgrid. linemap displays a map made of lines using a data frame of 
+  gridded data. getgrid transforms a set of polygons (sf objects) into a suitable 
+  data frame for linemap.
 Depends: R (>= 2.10)
 Imports: graphics, sf, stats
 License: GPL-3

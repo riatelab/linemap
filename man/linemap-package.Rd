@@ -5,7 +5,12 @@
 \alias{linemap-package}
 \title{Line Map Package}
 \description{
-Create maps made of lines.
+Create maps made of lines. The package contains two functions: \code{\link{linemap}} and \code{\link{getgrid}}.
+
+\code{\link{linemap}} displays a map made of lines using a data frame of gridded data.
+
+\code{\link{getgrid}} transforms a set of polygons (\code{\link{sf}} objects) into a suitable data frame
+for \code{\link{linemap}}.
 }
 \note{
 These three mains sources gave me the inspiration to create \code{linemap}:\cr

@@ -20,11 +20,24 @@ A data frame is returned.
 Transform a polygon layer to a regular grid data.frame.
 }
 \examples{
-\dontrun{
 library(linemap)
 library(sf)
 data("bretagne")
 data("france")
+# example on an extract of dataset
+cotedarmor <- bretagne[bretagne$CODE_DEPT == 22, ]
+cota <- getgrid(x = cotedarmor, cellsize = 1750, var = "POPULATION")
+opar <- par(mar = c(0,0,0,0))
+plot(st_geometry(france), col="lightblue3", border = NA, bg = "lightblue2",
+     xlim = c(min(cota$X), max(cota$X)), ylim= c(min(cota$Y), max(cota$Y)))
+linemap(x = cota, var = "POPULATION", k = 5, threshold = 1,
+        col = "lightblue3", border = "white", lwd = 0.8,
+        add = TRUE)
+par(opar)
+
+
+\donttest{
+# example on the full dataset
 bret <- getgrid(x = bretagne, cellsize = 1750, var = "POPULATION")
 opar <- par(mar = c(0,0,0,0))
 plot(st_geometry(france), col="lightblue3", border = NA, bg = "lightblue2",

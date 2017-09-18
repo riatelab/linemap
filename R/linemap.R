@@ -35,7 +35,7 @@
 linemap <- function(x, var, k = 2, threshold = 1, col = "white",
                     border = "black", lwd = 0.5, add = FALSE){
   x[is.na(x[var]),var] <- 0
-  lat <- unique(x[,2])
+  lat <- sort(unique(x[,2]))
   lon <- unique(x[,1])
   if(!add){
     graphics::plot(1:10, type = "n", axes = F,

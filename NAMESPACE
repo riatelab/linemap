@@ -2,3 +2,4 @@
 
 export(getgrid)
 export(linemap)
+export(smoothgrid)

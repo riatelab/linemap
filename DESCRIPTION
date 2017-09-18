@@ -10,7 +10,7 @@ Description: Create maps made of lines. The package contains two functions:
     data frame of gridded data. getgrid() transforms a set of polygons 
     (sf objects) into a suitable data frame for linemap().
 Depends: R (>= 2.10)
-Imports: graphics, sf, stats
+Imports: graphics, sf, stats, sp, raster
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

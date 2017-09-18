@@ -1,14 +1,15 @@
 [![Build Status](https://travis-ci.org/rCarto/linemap.svg?branch=master)](https://travis-ci.org/rCarto/linemap)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version-ago/linemap)](https://cran.r-project.org/package=linemap)  
 
 # `linemap`: Create Maps Made of Lines
 
 ## Example
 
-The package contains two functions: `linemap` and `getgrid`
+The package contains two functions: `linemap()` and `getgrid()`
 
-### `linemap` 
+### `linemap()` 
 
-`linemap` displays a map made of lines from a data frame of gridded data.
+`linemap()` displays a map made of lines using a data frame of gridded data.
 
 ```r
 library(linemap)
@@ -25,9 +26,9 @@ par(opar)
 ![mordor](https://raw.githubusercontent.com/rCarto/linemap/master/img/mordor.png)
 
 
-### `getgrid` 
+### `getgrid()` 
 
-`getgrid` transforms a set of polygons (POLYGONS or MULTIPOLYGONS, `sf` objects) into a suitable data frame for `linemap`. 
+`getgrid()` transforms a set of polygons ([`sf`](https://github.com/r-spatial/sf) objects) into a suitable data frame for `linemap()`. 
 
 
 ```r
@@ -69,6 +70,12 @@ par(opar)
 
 ## Installation
 
+
+### Stable
+```r
+install.packages('linemap')
+```
+### Dev
 ```r
 library(devtools)
 install_github("rCarto/linemap")

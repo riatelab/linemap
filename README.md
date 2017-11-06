@@ -65,8 +65,13 @@ par(opar)
 
 ![mordor2](https://raw.githubusercontent.com/rCarto/linemap/master/img/mordor2.png)
 
+## Blogposts
 
+[linemap](https://rgeomatic.hypotheses.org/1156) (rgeomatic)
 
+[Graphiques linéaires géospatiaux](https://mtmx.github.io/blog/carto_lignes/) (MTMX):
+
+![movinglines](https://mtmx.github.io/blog/carto_lignes_files/figure-html/lyon_pop-1.png)
 
 ## Installation
 

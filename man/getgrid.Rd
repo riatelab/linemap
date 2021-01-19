@@ -40,10 +40,6 @@ par(opar)
 
 \donttest{
 # example on the full dataset
-Bretagne <- st_read(system.file("gpkg/geofla.gpkg", package = "linemap"),
-                    layer = "Bretagne")
-France <- st_read(system.file("gpkg/geofla.gpkg", package = "linemap"),
-                  layer = "France")
 Bretagne_grid <- getgrid(x = Bretagne, cellsize = 1750, var = "POPULATION")
 opar <- par(mar = c(0,0,0,0))
 plot(st_geometry(France), col="lightblue3", border = NA, bg = "lightblue2",

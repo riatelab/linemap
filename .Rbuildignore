@@ -3,3 +3,4 @@
 ^img
 ^\.travis\.yml$
 ^\.github$
+^codecov\.yml$

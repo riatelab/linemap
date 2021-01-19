@@ -1,4 +1,5 @@
 [![R-CMD-check](https://github.com/riatelab/linemap/workflows/R-CMD-check/badge.svg)](https://github.com/riatelab/linemap/actions)
+[![Codecov test coverage](https://codecov.io/gh/riatelab/linemap/branch/master/graph/badge.svg)](https://codecov.io/gh/riatelab/linemap?branch=master)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version-ago/linemap)](https://cran.r-project.org/package=linemap)  
 
 # `linemap`: Create Maps Made of Lines

@@ -4,8 +4,16 @@
 \alias{linemap}
 \title{Line Map}
 \usage{
-linemap(x, var, k = 2, threshold = 1, col = "white", border = "black",
-  lwd = 0.5, add = FALSE)
+linemap(
+  x,
+  var,
+  k = 2,
+  threshold = 1,
+  col = "white",
+  border = "black",
+  lwd = 0.5,
+  add = FALSE
+)
 }
 \arguments{
 \item{x}{a data.frame, two first column must be longitudes and latitudes of

@@ -4,7 +4,9 @@
 \name{bretagne}
 \alias{bretagne}
 \title{Communes of Bretagne}
-\format{sf}
+\format{
+sf
+}
 \source{
 Extract from GEOFLA® 2016 v2.2 Communes France Métropolitaine - \url{http://professionnels.ign.fr/geofla}
 }

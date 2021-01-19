@@ -4,7 +4,9 @@
 \name{popOcc}
 \alias{popOcc}
 \title{Popultation Data for Occitanie}
-\format{data.frame}
+\format{
+data.frame
+}
 \source{
 Extract from INSEE's gridded population data, Population 2009(?) - \url{https://www.insee.fr/fr/statistiques/1405815}
 }

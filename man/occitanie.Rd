@@ -4,7 +4,9 @@
 \name{occitanie}
 \alias{occitanie}
 \title{Occitanie Region}
-\format{sf}
+\format{
+sf
+}
 \source{
 Extract from GEOFLA® 2016 v2.2 Communes France Métropolitaine - \url{http://professionnels.ign.fr/geofla}
 }

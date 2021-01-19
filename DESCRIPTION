@@ -1,17 +1,17 @@
 Package: linemap
 Type: Package
 Title: Line Maps
-Version: 0.1.0
-Authors@R: c(
-      person("Timothée", "Giraud", 
-        email = "timothee.giraud@cnrs.fr", role = c("cre","aut")))
-Description: Create maps made of lines. The package contains two functions: 
-    linemap() and getgrid(). linemap() displays a map made of lines using a 
-    data frame of gridded data. getgrid() transforms a set of polygons 
+Version: 0.1.1
+Authors@R: person("Timothée", "Giraud", email = "timothee.giraud@cnrs.fr",
+    role = c("cre","aut"), comment = c(ORCID = "0000-0002-1932-3323"))
+Description: Create maps made of lines. The package contains two functions:
+    linemap() and getgrid(). linemap() displays a map made of lines using a
+    data frame of gridded data. getgrid() transforms a set of polygons
     (sf objects) into a suitable data frame for linemap().
-Depends: R (>= 2.10)
-Imports: graphics, sf, stats, sp, raster
+Depends: R (>= 3.3.0)
+Imports: graphics, sf, stats
+Suggests: tinytest, covr
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.0.1
+RoxygenNote: 7.1.1

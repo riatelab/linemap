@@ -1,4 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^\img
+^img
 ^\.travis\.yml$
+^\.github$

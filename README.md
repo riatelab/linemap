@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/rCarto/linemap.svg?branch=master)](https://travis-ci.org/rCarto/linemap)
+[![R-CMD-check](https://github.com/rCarto/linemap/workflows/R-CMD-check/badge.svg)](https://github.com/rCarto/linemap/actions)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version-ago/linemap)](https://cran.r-project.org/package=linemap)  
 
 # `linemap`: Create Maps Made of Lines
@@ -92,3 +92,9 @@ install_github("rCarto/linemap")
 [Unknown Pleasures](https://en.wikipedia.org/wiki/Unknown_Pleasures) (*Joy Division*)  
 [Population Lines: How and Why I Created It](http://spatial.ly/2017/04/population-lines-how-and-why-i-created-it/) (*James Cheshire*)  
 [GeospatialLineGraphs](https://github.com/Brideau/GeospatialLineGraphs) (*Ryan Brideau*)  
+
+
+## Alternative
+
+* ggplot2 + [ggridges](https://CRAN.R-project.org/package=ggridges)
+

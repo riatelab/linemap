@@ -3,7 +3,8 @@
 #' @description Transform a polygon layer to a regular grid data.frame.
 #' @param x an sf polygon layer.
 #' @param cellsize size of the side of a grid cell.
-#' @param var name of the variable to transform to the grid. It can be a vector of names.
+#' @param var name of the variable to transform to the grid. It can be a vector
+#' of names.
 #' @return A data frame is returned.
 #' @export
 #' @examples
@@ -66,7 +67,9 @@ getgrid <- function(x, cellsize, var){
   lvar <- vector(mode = "list", length = length(var))
   names(lvar) <- var
   for (i in 1:length(lvar)){
-    lvar[[i]] <- as.vector(parts[[names(lvar)[i]]] * parts$area_part / parts$area)
+    lvar[[i]] <- as.vector(
+      parts[[names(lvar)[i]]] * parts$area_part / parts$area
+      )
   }
   v <- stats::aggregate(do.call(cbind,lvar), by = list(id = parts[['id_cell']]),
                  FUN = sum, na.rm=TRUE)

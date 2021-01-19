@@ -11,7 +11,8 @@ getgrid(x, cellsize, var)
 
 \item{cellsize}{size of the side of a grid cell.}
 
-\item{var}{name of the variable to transform to the grid. It can be a vector of names.}
+\item{var}{name of the variable to transform to the grid. It can be a vector
+of names.}
 }
 \value{
 A data frame is returned.

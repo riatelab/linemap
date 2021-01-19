@@ -15,6 +15,6 @@ for \code{\link{linemap}}.
 \note{
 These three mains sources gave me the inspiration to create \code{linemap}:\cr
 - Joy Division's 'Unknown Pleasures' Cover (\url{https://en.wikipedia.org/wiki/Unknown_Pleasures}) \cr
-- the work of James Cheshire (Population Lines: How and Why I Created It - \url{http://spatial.ly/2017/04/population-lines-how-and-why-i-created-it/})\cr
+- the work of James Cheshire (Population Lines: How and Why I Created It - \url{https://jcheshire.com/featured-maps/population-lines-how-and-why-i-created-it/})\cr
 - the work of Ryan Brideau (GeospatialLineGraphs - \url{https://github.com/Brideau/GeospatialLineGraphs})\cr
 }

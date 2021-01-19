@@ -22,13 +22,15 @@ Transform a polygon layer to a regular grid data.frame.
 \examples{
 library(linemap)
 library(sf)
-data("bretagne")
-data("france")
+Bretagne <- st_read(system.file("gpkg/geofla.gpkg", package = "linemap"),
+                    layer = "Bretagne")
+France <- st_read(system.file("gpkg/geofla.gpkg", package = "linemap"),
+                  layer = "France")
 # example on an extract of dataset
-cotedarmor <- bretagne[bretagne$CODE_DEPT == 22, ]
+cotedarmor <- Bretagne[Bretagne$CODE_DEPT == 22, ]
 cota <- getgrid(x = cotedarmor, cellsize = 1750, var = "POPULATION")
 opar <- par(mar = c(0,0,0,0))
-plot(st_geometry(france), col="lightblue3", border = NA, bg = "lightblue2",
+plot(st_geometry(France), col="lightblue3", border = NA, bg = "lightblue2",
      xlim = c(min(cota$X), max(cota$X)), ylim= c(min(cota$Y), max(cota$Y)))
 linemap(x = cota, var = "POPULATION", k = 5, threshold = 1,
         col = "lightblue3", border = "white", lwd = 0.8,
@@ -38,11 +40,15 @@ par(opar)
 
 \donttest{
 # example on the full dataset
-bret <- getgrid(x = bretagne, cellsize = 1750, var = "POPULATION")
+Bretagne <- st_read(system.file("gpkg/geofla.gpkg", package = "linemap"),
+                    layer = "Bretagne")
+France <- st_read(system.file("gpkg/geofla.gpkg", package = "linemap"),
+                  layer = "France")
+Bretagne_grid <- getgrid(x = Bretagne, cellsize = 1750, var = "POPULATION")
 opar <- par(mar = c(0,0,0,0))
-plot(st_geometry(france), col="lightblue3", border = NA, bg = "lightblue2",
-     xlim = c(min(bret$X), max(bret$X)), ylim= c(min(bret$Y), max(bret$Y)))
-linemap(x = bret, var = "POPULATION", k = 5, threshold = 1,
+plot(st_geometry(France), col="lightblue3", border = NA, bg = "lightblue2",
+     xlim = range(Bretagne_grid$X), ylim= range(Bretagne_grid$Y))
+linemap(x = Bretagne_grid, var = "POPULATION", k = 5, threshold = 1,
         col = "lightblue3", border = "white", lwd = 0.8,
         add = TRUE)
 par(opar)

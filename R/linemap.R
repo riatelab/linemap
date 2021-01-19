@@ -25,7 +25,8 @@
 #' \donttest{
 #' # example on the full dataset
 #' library(sf)
-#' data("occitanie")
+#' occitanie <- st_read(system.file("gpkg/geofla.gpkg", package = "linemap"),
+#'                      layer = "Occitanie")
 #' opar <- par(mar=c(0,0,0,0), bg = "ivory2")
 #' plot(st_geometry(occitanie), col="ivory1", border = NA)
 #' linemap(x = popOcc, var = "pop", k = 2.5, threshold = 50,

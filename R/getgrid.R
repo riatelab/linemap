@@ -53,9 +53,12 @@ getgrid <- function(x, cellsize, var){
 
   x$area <- sf::st_area(x)
   # predicted warning, we don't care...
-  options(warn = -1)
+  # options(warn = -1)
+  sf::st_agr(x) <- 'constant'
+  sf::st_agr(grid) <- 'constant'
+
   parts <- sf::st_intersection(x = grid[,"id_cell"], y = x)
-  options(warn = 0)
+  # options(warn = 0)
 
   parts$area_part <- sf::st_area(parts)
   lvar <- vector(mode = "list", length = length(var))
@@ -66,7 +69,7 @@ getgrid <- function(x, cellsize, var){
   v <- stats::aggregate(do.call(cbind,lvar), by = list(id = parts[['id_cell']]),
                  FUN = sum, na.rm=TRUE)
   grid <- merge(grid, v, by.x  = "id_cell", by.y = "id", all.x = T)
-  gr <- cbind(grid, sf::st_coordinates(sf::st_centroid(grid)))
+  gr <- cbind(grid, sf::st_coordinates(sf::st_centroid(sf::st_geometry(grid))))
   gr <- as.data.frame(gr[,c("X","Y",var), drop=TRUE])
   return(gr)
 }

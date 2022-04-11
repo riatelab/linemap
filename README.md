@@ -16,7 +16,9 @@ The package contains two functions: `linemap()` and `getgrid()`
 library(linemap)
 library(sf)
 data("popOcc")
-data("occitanie")
+occitanie <- st_read(system.file("gpkg/geofla.gpkg", 
+                                 package = "linemap"),
+                     layer = "Occitanie")
 opar <- par(mar=c(0,0,0,0), bg = "ivory2")
 plot(st_geometry(occitanie), col="ivory1", border = NA)
 linemap(x = popOcc, var = "pop", k = 2.5, threshold = 50,
@@ -35,8 +37,12 @@ par(opar)
 ```r
 library(linemap)
 library(sf)
-data("bretagne")
-data("france")
+bretagne <- st_read(system.file("gpkg/geofla.gpkg", 
+                                package = "linemap"),
+                    layer = "Bretagne")
+france <- st_read(system.file("gpkg/geofla.gpkg", 
+                              package = "linemap"),
+                  layer = "France")
 plot(st_geometry(bretagne))
 ```
 ![bretagne](https://raw.githubusercontent.com/riatelab/linemap/master/img/bret.png)

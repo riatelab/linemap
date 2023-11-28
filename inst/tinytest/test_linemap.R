@@ -1,15 +1,19 @@
-data("popOcc")
-popToulouse <- popOcc[findInterval(popOcc$X, c(3600234,3659444)) == 1  &
-                        findInterval(popOcc$Y, c(2290913,2348192)) == 1, ]
-expect_silent(linemap(x = popToulouse, var = "pop", k = 2.5, threshold = 50,
-                      col = "ivory1", border = "ivory4", lwd = 0.6,
+library(terra)
+r <- rast(system.file("tif/elevation.tif", package = "linemap"))
+
+expect_silent(linemap(x = r, k = 2.5, threshold = 50,
+                      col = "ivory1", border = "ivory4",
+                      lwd = 0.6,
                       add = FALSE))
-expect_silent(linemap(x = popToulouse, var = "pop", add = TRUE))
 
+expect_error(linemap(x = 8))
+s <- rast(system.file("ex/logo.tif", package = "terra"))
+expect_error(linemap(x = s))
 
-library(sf)
-Bretagne <- st_read(system.file("gpkg/geofla.gpkg", package = "linemap"),
-                    layer = "Bretagne", quiet = TRUE)
-# example on an extract of dataset
-cotedarmor <- Bretagne[Bretagne$CODE_DEPT == 22, ]
-expect_silent(getgrid(x = cotedarmor, cellsize = 1750, var = "POPULATION"))
+pts <- as.points(r)
+mon_df <- data.frame(crds(pts), values(pts))
+expect_silent(linemap(x = mon_df))
+expect_error(linemap(mon_df[1:130, 1:2]))
+expect_error(linemap(mon_df[c(1:1200,3,5), ]))
+mon_df$x = "aha"
+expect_error(linemap(mon_df))

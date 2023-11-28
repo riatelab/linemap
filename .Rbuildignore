@@ -4,3 +4,6 @@
 ^\.travis\.yml$
 ^\.github$
 ^codecov\.yml$
+^README\.Rmd$
+^CITATION\.cff$
+^codemeta\.json$

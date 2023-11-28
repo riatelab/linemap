@@ -1,0 +1,90 @@
+# -----------------------------------------------------------
+# CITATION file created with {cffr} R package, v0.5.0
+# See also: https://docs.ropensci.org/cffr/
+# -----------------------------------------------------------
+ 
+cff-version: 1.2.0
+message: 'To cite package "linemap" in publications use:'
+type: software
+license: GPL-3.0-only
+title: 'linemap: Line Maps'
+version: 0.3.0
+abstract: 'Create maps made of lines. The package contains one function: linemap().
+  linemap() displays a map made of lines using a raster or gridded data.'
+authors:
+- family-names: Giraud
+  given-names: Timothée
+  email: timothee.giraud@cnrs.fr
+  orcid: https://orcid.org/0000-0002-1932-3323
+repository: https://CRAN.R-project.org/package=linemap
+repository-code: https://github.com/riatelab/linemap
+url: https://github.com/riatelab/linemap
+contact:
+- family-names: Giraud
+  given-names: Timothée
+  email: timothee.giraud@cnrs.fr
+  orcid: https://orcid.org/0000-0002-1932-3323
+keywords:
+- cp1919
+- map
+- r
+- spatial
+references:
+- type: software
+  title: 'R: A Language and Environment for Statistical Computing'
+  notes: Depends
+  url: https://www.R-project.org/
+  authors:
+  - name: R Core Team
+  location:
+    name: Vienna, Austria
+  year: '2023'
+  institution:
+    name: R Foundation for Statistical Computing
+  version: '>= 3.3.0'
+- type: software
+  title: graphics
+  abstract: 'R: A Language and Environment for Statistical Computing'
+  notes: Imports
+  authors:
+  - name: R Core Team
+  location:
+    name: Vienna, Austria
+  year: '2023'
+  institution:
+    name: R Foundation for Statistical Computing
+- type: software
+  title: terra
+  abstract: 'terra: Spatial Data Analysis'
+  notes: Imports
+  url: https://rspatial.org/
+  repository: https://CRAN.R-project.org/package=terra
+  authors:
+  - family-names: Hijmans
+    given-names: Robert J.
+    email: r.hijmans@gmail.com
+    orcid: https://orcid.org/0000-0001-5872-2872
+  year: '2023'
+- type: software
+  title: tinytest
+  abstract: 'tinytest: Lightweight and Feature Complete Unit Testing Framework'
+  notes: Suggests
+  url: https://github.com/markvanderloo/tinytest
+  repository: https://CRAN.R-project.org/package=tinytest
+  authors:
+  - family-names: van der Loo
+    given-names: Mark
+    email: mark.vanderloo@gmail.com
+    orcid: https://orcid.org/0000-0002-9807-4686
+  year: '2023'
+- type: software
+  title: covr
+  abstract: 'covr: Test Coverage for Packages'
+  notes: Suggests
+  url: https://covr.r-lib.org
+  repository: https://CRAN.R-project.org/package=covr
+  authors:
+  - family-names: Hester
+    given-names: Jim
+    email: james.f.hester@gmail.com
+  year: '2023'

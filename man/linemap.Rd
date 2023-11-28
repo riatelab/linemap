@@ -2,24 +2,21 @@
 % Please edit documentation in R/linemap.R
 \name{linemap}
 \alias{linemap}
-\title{Line Map}
+\title{Create Line Map}
 \usage{
 linemap(
   x,
-  var,
   k = 2,
   threshold = 1,
   col = "white",
   border = "black",
   lwd = 0.5,
+  bg = par("bg"),
   add = FALSE
 )
 }
 \arguments{
-\item{x}{a data.frame, two first column must be longitudes and latitudes of
-gridded data.}
-
-\item{var}{name of the variable to plot.}
+\item{x}{a data.frame (x, y, value), a terra SpatRaster.}
 
 \item{k}{expension factor.}
 
@@ -31,31 +28,14 @@ gridded data.}
 
 \item{lwd}{thickness of the lines.}
 
+\item{bg}{background color}
+
 \item{add}{if TRUE add the lines to the current plot.}
 }
 \description{
 Plot a line map.
 }
 \examples{
-library(linemap)
-data("popOcc")
-# example on an extract of the gridded data
-popToulouse <- popOcc[findInterval(popOcc$X, c(3600234,3659444)) == 1  &
-                        findInterval(popOcc$Y, c(2290913,2348192)) == 1, ]
-opar <- par(mar=c(0,0,0,0), bg = "ivory1")
-linemap(x = popToulouse, var = "pop", k = 2.5, threshold = 50,
-        col = "ivory1", border = "ivory4", lwd = 0.6, add = FALSE)
-par(opar)
-
-\donttest{
-# example on the full dataset
-library(sf)
-occitanie <- st_read(system.file("gpkg/geofla.gpkg", package = "linemap"),
-                     layer = "Occitanie")
-opar <- par(mar=c(0,0,0,0), bg = "ivory2")
-plot(st_geometry(occitanie), col="ivory1", border = NA)
-linemap(x = popOcc, var = "pop", k = 2.5, threshold = 50,
-        col = "ivory1", border = "ivory4", lwd = 0.6, add = TRUE)
-par(opar)
-}
+ras <- terra::rast(system.file("tif/elevation.tif", package = "linemap"))
+linemap(ras, k = 7)
 }
